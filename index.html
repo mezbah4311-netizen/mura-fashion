@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MURA — Minimal Women's Fashion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F5;
+    --charcoal: #1C1C1C;
+    --sand: #E8E0D5;
+    --warm: #C9B99A;
+    --accent: #8B6F47;
+    --accent-light: #B8956A;
+    --ff-display: 'Cormorant Garamond', Georgia, serif;
+    --ff-body: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--ff-body);
+    background: var(--cream);
+    color: var(--charcoal);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 0.5px solid var(--sand);
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { font-family: var(--ff-display); font-size: 24px; font-weight: 300; letter-spacing: 5px; color: var(--charcoal); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--charcoal); text-decoration: none; opacity: .65; cursor: pointer; transition: opacity .2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-right { display: flex; gap: 20px; align-items: center; }
+  .nav-right i { font-size: 19px; cursor: pointer; opacity: .65; transition: opacity .2s; }
+  .nav-right i:hover { opacity: 1; }
+  .cart-badge { position: relative; }
+  .badge { position: absolute; top: -6px; right: -6px; background: var(--accent); color: #fff; font-size: 9px; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; }
+  .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 18px; }
+  .hero-title { font-family: var(--ff-display); font-size: 62px; font-weight: 300; line-height: 1.05; margin-bottom: 22px; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 13px; color: #777; line-height: 1.8; max-width: 340px; margin-bottom: 36px; }
+  .btn-primary { display: inline-block; background: var(--charcoal); color: #fff; padding: 15px 40px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: none; font-family: var(--ff-body); transition: background .25s; text-decoration: none; }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-outline { display: inline-block; background: transparent; color: var(--charcoal); padding: 14px 36px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--charcoal); font-family: var(--ff-body); transition: all .25s; text-decoration: none; margin-left: 12px; }
+  .btn-outline:hover { background: var(--charcoal); color: #fff; }
+  .hero-visual { background: linear-gradient(135deg, #EDE5DA 0%, #D8CCBA 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .hero-visual::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9B99A' fill-opacity='0.12'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .hero-placeholder { text-align: center; position: relative; z-index: 1; }
+  .hero-placeholder svg { opacity: .25; }
+  .hero-placeholder p { font-family: var(--ff-display); font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-top: 10px; opacity: .7; }
+  .hero-tag { position: absolute; bottom: 28px; left: 28px; background: rgba(250,248,245,.92); padding: 14px 18px; backdrop-filter: blur(4px); }
+  .hero-tag span { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--warm); display: block; margin-bottom: 4px; }
+  .hero-tag strong { font-family: var(--ff-display); font-size: 16px; font-weight: 400; }
+
+  /* AI BAR */
+  .ai-bar { background: var(--charcoal); padding: 20px 48px; display: flex; align-items: center; gap: 16px; }
+  .ai-bar-label { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .ai-bar-label i { color: var(--warm); font-size: 16px; }
+  .ai-bar-label span { color: rgba(255,255,255,.6); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+  .ai-input-wrap { flex: 1; display: flex; max-width: 560px; margin-left: auto; }
+  .ai-input { flex: 1; background: rgba(255,255,255,.08); border: 0.5px solid rgba(255,255,255,.18); color: #fff; padding: 12px 18px; font-size: 13px; font-family: var(--ff-body); outline: none; transition: border-color .2s; }
+  .ai-input:focus { border-color: rgba(255,255,255,.4); }
+  .ai-input::placeholder { color: rgba(255,255,255,.35); }
+  .ai-send { background: var(--accent); border: none; color: #fff; padding: 12px 24px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; font-family: var(--ff-body); transition: background .2s; white-space: nowrap; }
+  .ai-send:hover { background: var(--accent-light); }
+
+  /* AI RESULT BOX */
+  .ai-result { background: #fff; border-left: 2px solid var(--accent); padding: 20px 28px; margin: 0 48px; display: none; }
+  .ai-result.show { display: block; }
+  .ai-result-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--warm); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .ai-result-text { font-size: 13px; color: var(--charcoal); line-height: 1.8; margin-bottom: 14px; }
+  .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pill { padding: 8px 18px; border: 0.5px solid var(--sand); font-size: 11px; cursor: pointer; background: transparent; font-family: var(--ff-body); color: var(--charcoal); letter-spacing: .5px; transition: all .2s; }
+  .pill:hover { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
+
+  /* SECTIONS */
+  .section { padding: 72px 48px; }
+  .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 44px; }
+  .section-title { font-family: var(--ff-display); font-size: 36px; font-weight: 300; }
+  .section-link { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); text-decoration: none; cursor: pointer; }
+
+  /* PRODUCTS */
+  .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .product-card { cursor: pointer; }
+  .product-img { aspect-ratio: 3/4; background: var(--sand); margin-bottom: 16px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .product-img-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform .5s ease; }
+  .product-card:hover .product-img-inner { transform: scale(1.04); }
+  .product-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(28,28,28,.88); padding: 16px; transform: translateY(100%); transition: transform .35s ease; display: flex; gap: 8px; }
+  .product-card:hover .product-overlay { transform: translateY(0); }
+  .product-overlay button { flex: 1; background: transparent; border: 0.5px solid rgba(255,255,255,.35); color: #fff; padding: 10px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; font-family: var(--ff-body); transition: background .2s; }
+  .product-overlay button:hover { background: rgba(255,255,255,.15); }
+  .product-overlay .wish-btn { flex: 0; padding: 10px 14px; }
+  .ai-badge { position: absolute; top: 12px; left: 12px; background: var(--charcoal); color: #fff; font-size: 9px; padding: 5px 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+  .product-name { font-family: var(--ff-display); font-size: 17px; font-weight: 400; margin-bottom: 6px; }
+  .product-meta { display: flex; align-items: center; justify-content: space-between; }
+  .product-price { font-size: 13px; color: var(--accent); }
+  .product-colors { display: flex; gap: 5px; }
+  .color-dot { width: 11px; height: 11px; border-radius: 50%; border: 0.5px solid rgba(0,0,0,.12); }
+
+  /* CATEGORIES */
+  .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin: 0 48px; }
+  .cat { position: relative; aspect-ratio: 4/5; overflow: hidden; cursor: pointer; background: var(--sand); display: flex; align-items: center; justify-content: center; }
+  .cat-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform .6s ease; }
+  .cat:hover .cat-inner { transform: scale(1.05); }
+  .cat-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
+  .cat-label h3 { font-family: var(--ff-display); font-size: 26px; font-weight: 300; color: #fff; letter-spacing: 1px; margin-bottom: 4px; }
+  .cat-label span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.65); }
+
+  /* BANNER */
+  .banner { background: var(--sand); padding: 80px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 16px; }
+  .banner h2 { font-family: var(--ff-display); font-size: 42px; font-weight: 300; line-height: 1.1; margin-bottom: 18px; }
+  .banner h2 em { font-style: italic; color: var(--accent); }
+  .banner p { font-size: 13px; color: #666; line-height: 1.8; margin-bottom: 32px; max-width: 380px; }
+  .features { display: flex; flex-direction: column; gap: 24px; }
+  .feat { display: flex; gap: 18px; align-items: flex-start; }
+  .feat-icon { width: 40px; height: 40px; background: var(--cream); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .feat-icon i { font-size: 17px; color: var(--accent); }
+  .feat-text strong { display: block; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; font-weight: 500; }
+  .feat-text p { font-size: 12px; color: #888; line-height: 1.6; }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); color: #fff; padding: 64px 48px 28px; margin-top: 0; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 48px; }
+  .footer-logo { font-family: var(--ff-display); font-size: 26px; font-weight: 300; letter-spacing: 5px; margin-bottom: 6px; }
+  .footer-brand { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--warm); margin-bottom: 14px; }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,.38); line-height: 1.8; max-width: 240px; }
+  .footer-col h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; color: rgba(255,255,255,.45); }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-col ul li a { font-size: 12px; color: rgba(255,255,255,.55); text-decoration: none; cursor: pointer; transition: color .2s; }
+  .footer-col ul li a:hover { color: #fff; }
+  .footer-bottom { border-top: 0.5px solid rgba(255,255,255,.1); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 11px; color: rgba(255,255,255,.28); }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--charcoal); color: #fff; padding: 12px 22px; font-size: 12px; letter-spacing: .5px; opacity: 0; transition: all .35s; z-index: 1100; border-left: 2px solid var(--accent); white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  /* ADD TO CART BUTTON — active state */
+  .product-overlay button.in-cart { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* CART SIDEBAR */
+  .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 200; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-sidebar { position: fixed; top: 0; right: 0; bottom: 0; width: 380px; background: var(--cream); z-index: 201; transform: translateX(100%); transition: transform .35s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; }
+  .cart-sidebar.open { transform: translateX(0); }
+  .cart-header { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; border-bottom: 0.5px solid var(--sand); }
+  .cart-header h3 { font-family: var(--ff-display); font-size: 22px; font-weight: 300; letter-spacing: 1px; }
+  .cart-header-right { display: flex; align-items: center; gap: 16px; }
+  .cart-count-pill { background: var(--accent); color: #fff; font-size: 10px; padding: 3px 9px; border-radius: 20px; letter-spacing: .5px; }
+  .cart-close { background: none; border: none; cursor: pointer; font-size: 20px; color: var(--charcoal); opacity: .6; line-height: 1; padding: 4px; transition: opacity .2s; }
+  .cart-close:hover { opacity: 1; }
+  .cart-items { flex: 1; overflow-y: auto; padding: 20px 28px; display: flex; flex-direction: column; gap: 16px; }
+  .cart-items::-webkit-scrollbar { width: 4px; }
+  .cart-items::-webkit-scrollbar-thumb { background: var(--warm); border-radius: 2px; }
+  .cart-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #aaa; padding: 40px; text-align: center; }
+  .cart-empty i { font-size: 40px; opacity: .3; }
+  .cart-empty p { font-size: 13px; }
+  .cart-item { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 16px; border-bottom: 0.5px solid var(--sand); }
+  .cart-item-img { width: 72px; height: 90px; background: var(--sand); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-family: var(--ff-display); font-size: 15px; font-weight: 400; margin-bottom: 4px; }
+  .cart-item-price { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+  .cart-item-qty { display: flex; align-items: center; gap: 8px; }
+  .qty-btn { width: 26px; height: 26px; border: 0.5px solid var(--sand); background: transparent; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; color: var(--charcoal); transition: all .2s; }
+  .qty-btn:hover { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
+  .qty-num { font-size: 13px; min-width: 20px; text-align: center; font-weight: 500; }
+  .cart-item-remove { background: none; border: none; cursor: pointer; color: #bbb; font-size: 16px; padding: 4px; transition: color .2s; flex-shrink: 0; }
+  .cart-item-remove:hover { color: #e24b4a; }
+  .cart-footer { padding: 20px 28px 28px; border-top: 0.5px solid var(--sand); }
+  .cart-subtotal { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .cart-subtotal span { font-size: 12px; color: #888; letter-spacing: 1px; text-transform: uppercase; }
+  .cart-subtotal strong { font-family: var(--ff-display); font-size: 22px; font-weight: 400; color: var(--charcoal); }
+  .cart-free-shipping { font-size: 11px; color: #4CAF50; margin-bottom: 18px; display: flex; align-items: center; gap: 5px; }
+  .cart-checkout { width: 100%; background: var(--charcoal); color: #fff; border: none; padding: 16px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: var(--ff-body); transition: background .25s; margin-bottom: 10px; }
+  .cart-checkout:hover { background: var(--accent); }
+  .cart-continue { width: 100%; background: transparent; color: var(--charcoal); border: 0.5px solid var(--sand); padding: 13px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; font-family: var(--ff-body); transition: all .2s; }
+  .cart-continue:hover { border-color: var(--charcoal); }
+
+  /* NAV cart icon active */
+  .cart-icon-wrap { position: relative; cursor: pointer; }
+  .cart-icon-wrap i { font-size: 19px; opacity: .65; transition: opacity .2s, color .2s; }
+  .cart-icon-wrap:hover i { opacity: 1; }
+  .cart-icon-wrap.has-items i { opacity: 1; color: var(--accent); }
+
+  /* LOADING */
+  .loading-dots { display: inline-flex; gap: 4px; }
+  .loading-dots span { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: dot .9s ease-in-out infinite; }
+  .loading-dots span:nth-child(2) { animation-delay: .2s; }
+  .loading-dots span:nth-child(3) { animation-delay: .4s; }
+  @keyframes dot { 0%,80%,100%{transform:scale(0.6);opacity:.4} 40%{transform:scale(1);opacity:1} }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { min-height: 280px; }
+    .hero-text { padding: 48px 28px; }
+    .hero-title { font-size: 42px; }
+    .ai-bar { padding: 16px 24px; flex-wrap: wrap; }
+    .ai-input-wrap { max-width: 100%; width: 100%; margin-left: 0; }
+    .section { padding: 48px 24px; }
+    .ai-result { margin: 0 24px; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .categories-grid { grid-template-columns: 1fr; margin: 0 24px; }
+    .banner { grid-template-columns: 1fr; padding: 48px 24px; }
+    footer { padding: 48px 24px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">MURA</div>
+  <ul class="nav-links">
+    <li><a href="#">New In</a></li>
+    <li><a href="#">Collections</a></li>
+    <li><a href="#">Essentials</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <i class="ti ti-search" title="Search"></i>
+    <i class="ti ti-user" title="Account"></i>
+    <div class="cart-icon-wrap" id="cartIconWrap" onclick="openCart()">
+      <i class="ti ti-shopping-bag" title="Cart"></i>
+      <span class="badge" id="cartCount" style="display:none">0</span>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Spring — Summer 2026</p>
+    <h1 class="hero-title">Effortless<br><em>Elegance</em><br>Redefined</h1>
+    <p class="hero-sub">Thoughtfully made clothing for the modern woman. Each piece designed to move with you, season after season.</p>
+    <div>
+      <a href="#products" class="btn-primary">Shop Now</a>
+      <a href="#about" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-placeholder">
+      <svg width="130" height="180" viewBox="0 0 130 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="65" cy="22" r="20" fill="#8B6F47"/>
+        <path d="M65 42 Q44 54 40 90 L32 170 L98 170 L90 90 Q86 54 65 42Z" fill="#8B6F47"/>
+        <path d="M40 80 Q22 95 20 130" stroke="#6B5438" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M90 80 Q108 95 110 130" stroke="#6B5438" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+      <p>PRODUCT IMAGE</p>
+    </div>
+    <div class="hero-tag">
+      <span>Bestseller</span>
+      <strong>The Linen Edit</strong>
+    </div>
+  </div>
+</section>
+
+<div class="ai-bar">
+  <div class="ai-bar-label">
+    <i class="ti ti-sparkles"></i>
+    <span>AI Stylist</span>
+  </div>
+  <div class="ai-input-wrap">
+    <input class="ai-input" id="aiInput" placeholder="বিয়ের অনুষ্ঠানের জন্য কী পরব? / What to wear for a summer outing?" />
+    <button class="ai-send" onclick="askAI()">Ask ↗</button>
+  </div>
+</div>
+
+<div class="ai-result" id="aiResult">
+  <div class="ai-result-label">
+    <i class="ti ti-sparkles" style="font-size:12px"></i>
+    AI Stylist Recommends
+  </div>
+  <p class="ai-result-text" id="aiText"></p>
+  <div class="pills" id="aiPills"></div>
+</div>
+
+<section class="section" id="products">
+  <div class="section-header">
+    <h2 class="section-title">New Arrivals</h2>
+    <a class="section-link" href="#">View All →</a>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<div class="categories-grid" id="categoriesGrid"></div>
+
+<div class="banner" id="about">
+  <div>
+    <h2>Dress with<br><em>intention</em></h2>
+    <p>Our AI stylist learns your preferences and helps you build a wardrobe that truly reflects who you are — not just what's trending.</p>
+    <a href="#" class="btn-primary" onclick="document.getElementById('aiInput').focus();return false;">Try AI Styling ↗</a>
+  </div>
+  <div class="features">
+    <div class="feat">
+      <div class="feat-icon"><i class="ti ti-wand"></i></div>
+      <div class="feat-text">
+        <strong>Personalized Style Picks</strong>
+        <p>AI recommends outfits based on your occasion, body type, and saved preferences.</p>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon"><i class="ti ti-ruler"></i></div>
+      <div class="feat-text">
+        <strong>Smart Size Guide</strong>
+        <p>Get your perfect fit using AI-powered measurements — no more returns.</p>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon"><i class="ti ti-shirt"></i></div>
+      <div class="feat-text">
+        <strong>Outfit Builder</strong>
+        <p>Mix and match pieces from our collection to create complete looks, instantly.</p>
+      </div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon"><i class="ti ti-truck-delivery"></i></div>
+      <div class="feat-text">
+        <strong>Free Delivery in Bangladesh</strong>
+        <p>৳2,000-এর উপরে সব order-এ বিনামূল্যে ডেলিভারি।</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">MURA</div>
+      <div class="footer-brand">Fashion</div>
+      <p class="footer-tagline">Minimal women's clothing crafted for those who seek beauty in simplicity. Proudly made in Bangladesh.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Dresses</a></li>
+        <li><a href="#">Tops & Blouses</a></li>
+        <li><a href="#">Trousers</a></li>
+        <li><a href="#">Knitwear</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Brand</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 MURA Fashion. All rights reserved.</p>
+    <p>Designed with care · Made to last</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <div class="cart-header-right">
+      <span class="cart-count-pill" id="cartCountPill">0 items</span>
+      <button class="cart-close" onclick="closeCart()"><i class="ti ti-x"></i></button>
+    </div>
+  </div>
+  <div class="cart-items" id="cartItemsEl">
+    <div class="cart-empty" id="cartEmpty">
+      <i class="ti ti-shopping-bag"></i>
+      <p>Your cart is empty.<br>Add something beautiful.</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <strong id="cartTotal">৳ 0</strong>
+    </div>
+    <p class="cart-free-shipping" id="freeShipMsg"></p>
+    <button class="cart-checkout">Checkout →</button>
+    <button class="cart-continue" onclick="closeCart()">Continue Shopping</button>
+  </div>
+</div>
+
+<script>
+  // ── Products Data ──
+  const products = [
+    { name: "The Linen Midi", price: "৳ 4,200", colors: ["#E8DDD0","#1C1C1C","#8B6F47"], aiPick: true },
+    { name: "Silk Slip Top", price: "৳ 2,800", colors: ["#FAF8F5","#C9B99A","#D4A88A"], aiPick: false },
+    { name: "Wide Leg Trouser", price: "৳ 3,600", colors: ["#1C1C1C","#E8DDD0","#6B5B45"], aiPick: true },
+    { name: "Oversized Blazer", price: "৳ 6,500", colors: ["#888880","#1C1C1C"], aiPick: false },
+    { name: "Wrap Linen Dress", price: "৳ 4,800", colors: ["#D4BFA0","#1C1C1C"], aiPick: false },
+    { name: "Ribbed Tank Top", price: "৳ 1,900", colors: ["#FAF8F5","#E8DDD0","#C9B99A","#1C1C1C"], aiPick: true },
+    { name: "Midi Skirt", price: "৳ 3,200", colors: ["#E8DDD0","#8B6F47"], aiPick: false },
+    { name: "Linen Shirt Dress", price: "৳ 5,100", colors: ["#FAF8F5","#C9B99A"], aiPick: false },
+  ];
+
+  const catColors = ["#DDD4C8","#C5B89A","#B5A88A"];
+  const categories = [
+    { label: "Dresses", sub: "42 pieces", color: catColors[0] },
+    { label: "Essentials", sub: "28 pieces", color: catColors[1] },
+    { label: "Outerwear", sub: "16 pieces", color: catColors[2] },
+  ];
+
+  let cartItems = {};
+
+  function openCart() {
+    document.getElementById('cartSidebar').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCart() {
+    document.getElementById('cartSidebar').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function addToCart(name, priceStr, btnEl) {
+    const priceNum = parseInt(priceStr.replace(/[^\d]/g, ''));
+    if (cartItems[name]) {
+      cartItems[name].qty++;
+    } else {
+      cartItems[name] = { name, price: priceStr.trim(), priceNum, qty: 1 };
+    }
+    if (btnEl) {
+      btnEl.classList.add('in-cart');
+      btnEl.textContent = '✓ Added';
+      setTimeout(() => { btnEl.textContent = 'Add to Cart'; btnEl.classList.remove('in-cart'); }, 1800);
+    }
+    updateCartUI();
+    showToast(name + ' added to cart');
+    openCart();
+  }
+
+  function removeFromCart(name) {
+    if (!cartItems[name]) return;
+    delete cartItems[name];
+    updateCartUI();
+  }
+
+  function changeQty(name, delta) {
+    if (!cartItems[name]) return;
+    cartItems[name].qty += delta;
+    if (cartItems[name].qty <= 0) { removeFromCart(name); return; }
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    const badge = document.getElementById('cartCount');
+    const pill = document.getElementById('cartCountPill');
+    const wrap = document.getElementById('cartIconWrap');
+    const footer = document.getElementById('cartFooter');
+    const emptyEl = document.getElementById('cartEmpty');
+    const itemsEl = document.getElementById('cartItemsEl');
+    const totalEl = document.getElementById('cartTotal');
+    const freeShip = document.getElementById('freeShipMsg');
+
+    const itemCount = Object.values(cartItems).reduce((s, i) => s + i.qty, 0);
+    const total = Object.values(cartItems).reduce((s, i) => s + (i.priceNum * i.qty), 0);
+
+    badge.textContent = itemCount;
+    badge.style.display = itemCount > 0 ? 'flex' : 'none';
+    pill.textContent = itemCount === 0 ? '0 items' : itemCount + (itemCount === 1 ? ' item' : ' items');
+    wrap.classList.toggle('has-items', itemCount > 0);
+
+    const keys = Object.keys(cartItems);
+    if (keys.length === 0) {
+      emptyEl.style.display = 'flex';
+      footer.style.display = 'none';
+    } else {
+      emptyEl.style.display = 'none';
+      footer.style.display = 'block';
+      [...itemsEl.querySelectorAll('.cart-item')].forEach(el => el.remove());
+      keys.forEach(name => {
+        const it = cartItems[name];
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <div class="cart-item-img">
+            <svg width="40" height="55" viewBox="0 0 40 55" fill="none">
+              <circle cx="20" cy="7" r="7" fill="#C9B99A" opacity="0.5"/>
+              <path d="M20 14 Q13 18 12 28 L10 50 L30 50 L28 28 Q27 18 20 14Z" fill="#C9B99A" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="cart-item-info">
+            <p class="cart-item-name">${it.name}</p>
+            <p class="cart-item-price">${it.price}</p>
+            <div class="cart-item-qty">
+              <button class="qty-btn" onclick="changeQty('${name}', -1)">−</button>
+              <span class="qty-num">${it.qty}</span>
+              <button class="qty-btn" onclick="changeQty('${name}', 1)">+</button>
+            </div>
+          </div>
+          <button class="cart-item-remove" onclick="removeFromCart('${name}')"><i class="ti ti-trash"></i></button>
+        `;
+        itemsEl.appendChild(div);
+      });
+    }
+
+    totalEl.textContent = '৳ ' + total.toLocaleString();
+    const freeThreshold = 2000;
+    if (total >= freeThreshold) {
+      freeShip.style.color = '#4CAF50';
+      freeShip.innerHTML = '<i class="ti ti-check" style="font-size:12px;margin-right:4px"></i>Free delivery unlocked!';
+    } else {
+      freeShip.style.color = '#888';
+      freeShip.innerHTML = '৳ ' + (freeThreshold - total).toLocaleString() + ' more for free delivery';
+    }
+  }
+
+  function addWishlist(name) {
+    showToast('Saved to wishlist ♡');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2400);
+  }
+
+  function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="product-img">
+          ${p.aiPick ? '<span class="ai-badge">AI Pick</span>' : ''}
+          <div class="product-img-inner">
+            <svg width="80" height="110" viewBox="0 0 80 110" fill="none">
+              <circle cx="40" cy="13" r="13" fill="#C9B99A" opacity="0.45"/>
+              <path d="M40 26 Q27 34 24 55 L20 100 L60 100 L56 55 Q53 34 40 26Z" fill="#C9B99A" opacity="0.45"/>
+              <path d="M24 50 Q14 60 12 80" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <path d="M56 50 Q66 60 68 80" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="product-overlay">
+            <button onclick="addToCart('${p.name}', '${p.price}', this)">Add to Cart</button>
+            <button class="wish-btn" onclick="addWishlist('${p.name}')"><i class="ti ti-heart"></i></button>
+          </div>
+        </div>
+        <p class="product-name">${p.name}</p>
+        <div class="product-meta">
+          <span class="product-price">${p.price}</span>
+          <div class="product-colors">${p.colors.map(c => `<span class="color-dot" style="background:${c}"></span>`).join('')}</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function renderCategories() {
+    const grid = document.getElementById('categoriesGrid');
+    categories.forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'cat';
+      el.innerHTML = `
+        <div class="cat-inner" style="background:${c.color}">
+          <svg width="90" height="130" viewBox="0 0 90 130" fill="none">
+            <circle cx="45" cy="16" r="16" fill="#8B6F47" opacity="0.3"/>
+            <path d="M45 32 Q30 42 27 65 L22 118 L68 118 L63 65 Q60 42 45 32Z" fill="#8B6F47" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="cat-label">
+          <h3>${c.label}</h3>
+          <span>${c.sub}</span>
+        </div>
+      `;
+      grid.appendChild(el);
+    });
+  }
+
+  // ── AI Stylist ──
+  async function askAI() {
+    const input = document.getElementById('aiInput').value.trim();
+    if (!input) return;
+
+    const box = document.getElementById('aiResult');
+    const textEl = document.getElementById('aiText');
+    const pillsEl = document.getElementById('aiPills');
+
+    box.classList.add('show');
+    textEl.innerHTML = '<span class="loading-dots"><span></span><span></span><span></span></span>';
+    pillsEl.innerHTML = '';
+
+    // ── Replace YOUR_API_KEY below with your Anthropic API key ──
+    // Get your key from: https://console.anthropic.com/
+    const API_KEY = 'YOUR_API_KEY';
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: `You are a warm, helpful AI stylist for MURA Fashion, a minimal women's clothing brand based in Bangladesh. Respond in the same language the user writes in — Bengali or English. Give a helpful, personalized 2-3 sentence style recommendation. Then suggest 3-4 short clickable filter labels (4-5 words max each). Reply ONLY in this exact JSON format with no extra text or markdown: {"text":"...","pills":["...","..."]}`,
+          messages: [{ role: 'user', content: input }]
+        })
+      });
+
+      const data = await res.json();
+      const raw = data.content.map(i => i.text || '').join('');
+      const clean = raw.replace(/```json|```/g, '').trim();
+      const parsed = JSON.parse(clean);
+
+      textEl.textContent = parsed.text;
+      (parsed.pills || []).forEach(p => {
+        const btn = document.createElement('button');
+        btn.className = 'pill';
+        btn.textContent = p;
+        pillsEl.appendChild(btn);
+      });
+
+    } catch (e) {
+      // Fallback if API key not set
+      const fallbacks = {
+        wedding: { text: "For a wedding, our Wrap Linen Dress in ivory or the Silk Slip Dress in blush would be perfect. Light, elegant fabrics that photograph beautifully. Add our linen blazer for the ceremony.", pills: ["Formal Dresses","Wedding Guest","Soft Colours","Accessories"] },
+        office: { text: "For office wear, our Tailored Trousers paired with a structured blouse and Oversized Blazer create a polished, professional look that mixes and matches easily.", pills: ["Office Collection","Blazers","Smart Trousers","Neutral Tones"] },
+        casual: { text: "For casual everyday wear, our Essential Ribbed Tanks and Wide Leg Linen Trousers are bestsellers — comfortable, breathable, and effortlessly stylish.", pills: ["Casual Basics","Linen Collection","Bestsellers","Under ৳3,000"] },
+      };
+      const key = input.toLowerCase().includes('বিয়ে') || input.toLowerCase().includes('wedding') ? 'wedding'
+                : input.toLowerCase().includes('office') || input.toLowerCase().includes('অফিস') ? 'office'
+                : 'casual';
+      const fb = fallbacks[key];
+      textEl.textContent = fb.text + (API_KEY === 'YOUR_API_KEY' ? ' (Demo mode — add your API key to enable live AI responses.)' : '');
+      fb.pills.forEach(p => {
+        const btn = document.createElement('button');
+        btn.className = 'pill';
+        btn.textContent = p;
+        pillsEl.appendChild(btn);
+      });
+    }
+
+    document.getElementById('aiInput').value = '';
+  }
+
+  document.getElementById('aiInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') askAI();
+  });
+
+  renderProducts();
+  renderCategories();
+</script>
+</body>
+</html>
